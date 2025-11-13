@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enigmas Magnie 🦇 - Covil dos Mistérios Sombrios</title>
+  <meta name="description" content="Desvende mistérios envoltos em sombras no covil dos enigmas vampíricos. Teste sua lógica e intuição em desafios únicos.">
+  <meta name="keywords" content="enigmas, vampiro, mistérios, puzzles, jogos, lógica">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<style>/* Importar Google Fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Creepster&display=swap');
+  
+  /* Reset e Estilos Básicos */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  :root {
+    /* Cores do tema vampírico */
+    --bg-primary: #0c080d;
+    --bg-secondary: #1f1823;
+    --bg-tertiary: #382b3f;
+    --color-primary: #7a6284;
+    --color-secondary: #52425c;
+    --border-color: rgba(82, 66, 92, 0.5);
+    --shadow-color: rgba(122, 98, 132, 0.3);
+    
+    /* Fontes */
+    --font-cinzel: 'Cinzel Decorative', serif;
+    --font-creepster: 'Creepster', cursive;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  
+  body {
+    font-family: var(--font-sans);
+    background: linear-gradient(to bottom, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
+    color: #e5e5e5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Header */
+  header {
+    position: relative;
+    background: linear-gradient(
+      to bottom,
+      rgba(12, 8, 13, 0.85),
+      rgba(31, 24, 35, 0.95)
+    ), url('../images/gothic-castle-silhouette.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    border-bottom: 2px solid var(--border-color);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    padding: 2.5rem 1rem;
+  }
+  
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(82, 66, 92, 0.3) 100%);
+    pointer-events: none;
+  }
+  
+  .header-content {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    z-index: 10;
+  }
+  
+  .header-top {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--color-primary);
+    font-family: var(--font-cinzel);
+  }
+  
+  .user-name {
+    color: var(--color-secondary);
+    font-weight: bold;
+  }
+  
+  .header-title {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  
+  .header-title h1 {
+    font-family: var(--font-cinzel);
+    font-size: clamp(3rem, 10vw, 7rem);
+    color: var(--color-primary);
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    text-shadow: 
+      0 0 15px rgba(122, 98, 132, 0.9),
+      0 0 30px rgba(122, 98, 132, 0.7),
+      0 0 45px rgba(122, 98, 132, 0.5);
+  }
+  
+  /* Navigation */
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: clamp(1rem, 3vw, 3.5rem);
+    flex-wrap: wrap;
+  }
+  
+  /* Buttons */
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-cinzel);
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(to right, var(--color-secondary), var(--bg-tertiary));
+    color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .btn-primary:hover {
+    background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+    box-shadow: 0 4px 25px var(--shadow-color);
+    transform: translateY(-2px);
+  }
+  
+  .btn-outline {
+    background: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-secondary);
+    backdrop-filter: blur(10px);
+  }
+  
+  .btn-outline:hover {
+    background: rgba(31, 24, 35, 0.8);
+    border-color: var(--color-primary);
+    color: white;
+  }
+  
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-primary);
+    border: 1px solid transparent;
+    backdrop-filter: blur(10px);
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    padding: 1rem 1.5rem;
+  }
+  
+  .btn-ghost:hover {
+    background: rgba(82, 66, 92, 0.6);
+    border-color: var(--color-secondary);
+    color: white;
+  }
+  
+  .btn-lg {
+    font-size: 1.25rem;
+    padding: 1.75rem 3rem;
+  }
+  
+  /* Main Content */
+  main {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 1rem;
+    width: 100%;
+  }
+  
+  .hero-section {
+    text-align: center;
+    margin-bottom: 6rem;
+  }
+  
+  .hero-title {
+    font-family: var(--font-cinzel);
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+    line-height: 1.2;
+  }
+  
+  .hero-description {
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    color: var(--color-secondary);
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Cards Grid */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 6rem;
+  }
+  
+  .card {
+    background: linear-gradient(135deg, rgba(56, 43, 63, 0.6), rgba(31, 24, 35, 0.8));
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover {
+    border-color: rgba(122, 98, 132, 0.7);
+    box-shadow: 0 20px 60px rgba(122, 98, 132, 0.2);
+    transform: scale(1.05);
+  }
+  
+  .card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .card-title {
+    font-family: var(--font-cinzel);
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+  
+  .card-text {
+    color: var(--color-secondary);
+    line-height: 1.6;
+  }
+  
+  /* Social Section */
+  .social-section {
+    text-align: center;
+  }
+  
+  .social-title {
+    font-family: var(--font-cinzel);
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: 2.5rem;
+  }
+  
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  
+  .social-link {
+    color: var(--color-secondary);
+    text-decoration: none;
+    font-family: var(--font-cinzel);
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s ease;
+  }
+  
+  .social-link:hover {
+    color: var(--color-primary);
+  }
+  
+  /* Footer */
+  footer {
+    background: linear-gradient(to top, var(--bg-primary), var(--bg-secondary));
+    border-top: 1px solid rgba(82, 66, 92, 0.4);
+    padding: 2.5rem 1rem;
+    margin-top: auto;
+  }
+  
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--color-primary);
+    font-family: var(--font-cinzel);
+  }
+  
+  /* Form Styles */
+  .form-container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .form-card {
+    background: linear-gradient(135deg, rgba(56, 43, 63, 0.3), rgba(12, 8, 13, 0.8));
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 3rem 2rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+  
+  .form-title {
+    font-family: var(--font-cinzel);
+    font-size: 2rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .form-description {
+    color: var(--color-secondary);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-label {
+    display: block;
+    color: var(--color-primary);
+    font-family: var(--font-cinzel);
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(56, 43, 63, 0.3);
+    border: 1px solid rgba(82, 66, 92, 0.5);
+    border-radius: 0.5rem;
+    color: var(--color-primary);
+    font-size: 1rem;
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(122, 98, 132, 0.2);
+  }
+  
+  .form-input::placeholder {
+    color: rgba(82, 66, 92, 0.6);
+  }
+  
+  .form-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--color-secondary);
+  }
+  
+  .form-link {
+    color: var(--color-primary);
+    text-decoration: underline;
+    font-family: var(--font-cinzel);
+  }
+  
+  .form-link:hover {
+    color: var(--color-secondary);
+  }
+  
+  /* Toast Notifications */
+  .toast-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .toast {
+    background: rgba(56, 43, 63, 0.95);
+    border: 1px solid var(--color-secondary);
+    border-radius: 0.5rem;
+    padding: 1rem 1.5rem;
+    min-width: 300px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.3s ease;
+  }
+  
+  .toast.success {
+    border-color: #4ade80;
+  }
+  
+  .toast.error {
+    border-color: #ef4444;
+  }
+  
+  .toast-title {
+    font-family: var(--font-cinzel);
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .toast-message {
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(400px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Utility Classes */
+  .hidden {
+    display: none !important;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header-top {
+      justify-content: center;
+    }
+    
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    nav {
+      gap: 1rem;
+    }
+    
+    .social-links {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  }
+  
+  /* Loading State */
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  </style>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <div class="header-top">
+        <div id="user-area">
+          <a href="cadastro.html">Cadastrar</a>
+          <a href="login.html">Login</a>
+        </div>
+      </div>
+      
+      <div class="header-title">
+        <h1>MAGNIE</h1>
+      </div>
+      
+      <nav>
+        <a href="index.html" class="btn btn-ghost">Início</a>
+        <a href="enigmas.html" class="btn btn-ghost hidden" id="nav-enigmas">Enigmas</a>
+        <a href="ranking.html" class="btn btn-ghost">Ranking</a>
+        <a href="sobre.html" class="btn btn-ghost">Sobre</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div>
+        <h2 class="hero-title">Desafie sua mente com enigmas únicos</h2>
+        <p class="hero-description">
+          Cadastre-se para salvar seu progresso e desbloquear novos níveis através de histórias envolventes.
+        </p>
+        <div style="text-align: center;">
+          <a href="enigmas.html" class="btn btn-primary btn-lg">Começar Enigmas</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Cards -->
+    <section class="cards-grid">
+      <div class="card">
+        <div class="card-icon">🧩</div>
+        <h3 class="card-title">Enigmas Únicos</h3>
+        <p class="card-text">
+          Desafios criativos que testam sua lógica e conhecimento geral através de histórias envolventes.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📚</div>
+        <h3 class="card-title">Histórias Envolventes</h3>
+        <p class="card-text">
+          Cada enigma faz parte de uma narrativa única com progressão de dificuldade: Fácil → Médio → Difícil.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">💾</div>
+        <h3 class="card-title">Progresso Salvo</h3>
+        <p class="card-text">
+          Seu progresso é salvo automaticamente. Complete níveis para desbloquear novos desafios.
+        </p>
+      </div>
+    </section>
+
+    <!-- Social Section -->
+    <section class="social-section">
+      <h2 class="social-title">Siga o MAGNIE</h2>
+      <div class="social-links">
+        <a href="https://www.instagram.com/magnienigma/" class="social-link" target="_blank" rel="noopener noreferrer">
+          <span style="font-size: 1.5rem;">📷</span> Instagram
+        </a>
+        <a href="https://x.com/magnienigma" class="social-link" target="_blank" rel="noopener noreferrer">
+          <span style="font-size: 1.5rem;">🐦</span> X
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p>© 2025 MAGNIE - Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+  <script>// Sistema de Autenticação e Gerenciamento de Usuário
+    const Auth = {
+      isLoggedIn() {
+        return localStorage.getItem('magnie_user') !== null;
+      },
+      
+      getUser() {
+        const userData = localStorage.getItem('magnie_user');
+        return userData ? JSON.parse(userData) : null;
+      },
+      
+      login(username, password) {
+        const user = {
+          username: username,
+          email: username + '@magnie.com',
+          loginTime: new Date().toISOString()
+        };
+        localStorage.setItem('magnie_user', JSON.stringify(user));
+        return true;
+      },
+      
+      register(username, email, password) {
+        const user = {
+          username: username,
+          email: email,
+          loginTime: new Date().toISOString()
+        };
+        localStorage.setItem('magnie_user', JSON.stringify(user));
+        return true;
+      },
+      
+      logout() {
+        localStorage.removeItem('magnie_user');
+        window.location.href = 'index.html'; // <-- ajustado
+      }
+    };
+    
+    // Toast Notifications
+    const Toast = {
+      container: null,
+      
+      init() {
+        if (!this.container) {
+          this.container = document.createElement('div');
+          this.container.className = 'toast-container';
+          document.body.appendChild(this.container);
+        }
+      },
+      
+      show(title, message, type = 'success') {
+        this.init();
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+          <div class="toast-title">${title}</div>
+          <div class="toast-message">${message}</div>
+        `;
+        this.container.appendChild(toast);
+        
+        setTimeout(() => {
+          toast.style.animation = 'slideIn 0.3s ease reverse';
+          setTimeout(() => toast.remove(), 300);
+        }, 5000);
+      },
+      
+      success(title, message) { this.show(title, message, 'success'); },
+      error(title, message) { this.show(title, message, 'error'); }
+    };
+    
+    // Atualizar Header
+    function updateHeader() {
+      const user = Auth.getUser();
+      const userArea = document.getElementById('user-area');
+      const navEnigmas = document.getElementById('nav-enigmas');
+      if (!userArea) return;
+      
+      if (user) {
+        userArea.innerHTML = `
+          <div class="user-info">
+            <span>Bem-vindo, <span class="user-name">${user.username}</span>!</span>
+            <button onclick="Auth.logout()" class="btn btn-outline">Sair</button>
+          </div>
+        `;
+        if (navEnigmas) navEnigmas.classList.remove('hidden');
+      } else {
+        userArea.innerHTML = `
+          <a href="login.html" class="btn btn-outline">Login</a>
+          <a href="cadastro.html" class="btn btn-primary">Cadastro</a>
+        `;
+        if (navEnigmas) navEnigmas.classList.add('hidden');
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', updateHeader);
+    
+    // Formulários
+    function handleLogin(event) {
+      event.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      if (!username || !password) {
+        Toast.error('Erro no Login', 'Por favor, preencha todos os campos.');
+        return;
+      }
+      
+      Auth.login(username, password);
+      Toast.success('Login Realizado!', 'Bem-vindo de volta ao MAGNIE!');
+      setTimeout(() => { window.location.href = 'enigmas.html'; }, 1500); // <-- ajustado
+    }
+    
+    function handleRegister(event) {
+      event.preventDefault();
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+      
+      if (!username || !email || !password || !confirmPassword) {
+        Toast.error('Erro no Cadastro', 'Por favor, preencha todos os campos.');
+        return;
+      }
+      
+      if (password !== confirmPassword) {
+        Toast.error('Erro no Cadastro', 'As senhas não coincidem.');
+        return;
+      }
+      
+      Auth.register(username, email, password);
+      Toast.success('Cadastro Realizado!', 'Bem-vindo ao MAGNIE!');
+      setTimeout(() => { window.location.href = 'enigmas.html'; }, 1500); // <-- ajustado
+    }
+    
+    // Proteger páginas
+    function requireAuth() {
+      if (!Auth.isLoggedIn()) {
+        Toast.error('Acesso Negado', 'Você precisa fazer login para acessar esta página.');
+        setTimeout(() => { window.location.href = 'login.html'; }, 2000); // <-- ajustado
+      }
+    }
+    </script>
+</body>
+</html>
